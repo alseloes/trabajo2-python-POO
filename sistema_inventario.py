@@ -91,7 +91,9 @@ def menu_principal():
         print("2. Buscar producto")
         print("3. Listar productos")
         print("4. Calcular valor total del inventario")
-        print("5. Salir")
+        print("5. Actualizar precio")
+        print("6. Actualizar cantidad")
+        print("7. Salir")
 
         opcion = input("Seleccione una opción: ")
 
@@ -126,6 +128,30 @@ def menu_principal():
                 print(f"\nValor total del inventario: ${total:.2f}\n")
 
             elif opcion == "5":
+                nombre = input("Ingrese el nombre del producto a actualizar precio: ")
+
+                producto = inventario.buscar_producto(nombre)
+
+                if producto:
+                    nuevo_precio = float(input(f"Ingrese el nuevo precio para {nombre.lower()}: "))
+                    producto.actualizar_precio(nuevo_precio)
+                    print("\nPrecio actualizado correctamente.\n")
+                else:
+                    raise LookupError("Producto no encontrado.")
+
+            elif opcion == "6":
+                nombre = input("Ingrese el nombre del producto a actualizar la cantidad: ")
+
+                producto = inventario.buscar_producto(nombre)
+
+                if producto:
+                    nueva_cantidad = int(input(f"Ingrese la nueva cantidad para {nombre.lower()}: "))
+                    producto.actualizar_cantidad(nueva_cantidad)
+                    print("\nCantidad actualizada correctamente.\n")
+                else:
+                    raise LookupError("Producto no encontrado.")
+
+            elif opcion == "7":
                 print("\nGracias por utilizar el sistema.")
                 break
 
