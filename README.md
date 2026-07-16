@@ -40,23 +40,3 @@ Desarrollar un sistema básico de inventario con POO en Python para gestionar pr
 * Crear un menú interactivo simple para probar las funcionalidades
 * Mostrar resultados de operaciones por consola de manera formateada
 * Validar que los datos ingresados sean del tipo correcto
-
-### Cómo se evalúa
-
-Tu solución se calificará según estos criterios:
-
-* Implementación de la clase Producto30%
-
-* Correcta definición de la clase Producto con sus atributos (nombre, precio, cantidad) y métodos (actualizar_precio, actualizar_cantidad, calcular_valor_total, **str**). Incluye validaciones básicas para los datos.
-
-* Implementación de la clase Inventario30%
-
-* Correcta implementación de la clase Inventario con métodos para agregar productos, buscar por nombre, calcular el valor total del inventario y listar todos los productos.
-
-* Manejo de excepciones20%
-
-* Implementación de bloques try-except para manejar errores como valores inválidos (cantidades negativas), tipos de datos incorrectos o productos no encontrados.
-
-* Interfaz de usuario y funcionalidad20%
-
-* Desarrollo de un menú interactivo que permita al usuario realizar todas las operaciones solicitadas (agregar, buscar, listar productos y calcular valor total).
