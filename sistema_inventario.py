@@ -76,10 +76,8 @@ class Inventario:
             print("\nEl inventario está vacío.\n")
             return
 
-        print("\n===== INVENTARIO =====")
         for producto in self.productos:
             print(producto)
-        print("======================\n")
 
 
 def menu_principal():
@@ -99,6 +97,7 @@ def menu_principal():
 
         try:
             if opcion == "1":
+                print("\n===== REGISTRO DE PRODUCTO =====")
                 nombre = input("Nombre del producto: ").strip()
                 precio = float(input("Precio: "))
                 cantidad = int(input("Cantidad: "))
@@ -109,6 +108,7 @@ def menu_principal():
                 print("Producto agregado correctamente.\n")
 
             elif opcion == "2":
+                print("\n===== BÚSQUEDA DE PRODUCTO =====")
                 nombre = input("Ingrese el nombre del producto: ")
 
                 producto = inventario.buscar_producto(nombre)
@@ -121,33 +121,60 @@ def menu_principal():
                     raise LookupError("Producto no encontrado.")
 
             elif opcion == "3":
+                print("\n===== LISTA DE INVENTARIO =====")
                 inventario.listar_productos()
+                print("======================\n")
 
             elif opcion == "4":
+                print("\n===== CÁLCULO DE VALOR DEL INVENTARIO =====")
                 total = inventario.calcular_valor_inventario()
                 print(f"\nValor total del inventario: ${total:.2f}\n")
 
             elif opcion == "5":
-                nombre = input("Ingrese el nombre del producto a actualizar precio: ")
+                print("\n===== ACTUALIZACIÓN DE PRECIO DE PRODUCTO =====")
+                nombre = input(
+                    "Ingrese el nombre del producto a actualizar precio: ")
 
                 producto = inventario.buscar_producto(nombre)
 
                 if producto:
-                    nuevo_precio = float(input(f"Ingrese el nuevo precio para {nombre.lower()}: "))
+                    print(
+                        f" - Precio actual para {nombre.lower()}: ${float(producto.precio)}")
+
+                    precio_anterior = float(producto.precio)
+                    nuevo_precio = float(
+                        input(f" - Ingrese el nuevo precio para {nombre.lower()}: $"))
                     producto.actualizar_precio(nuevo_precio)
-                    print("\nPrecio actualizado correctamente.\n")
+                    print(
+                        f"\nPrecio de {producto.nombre} actualizado correctamente.")
+                    print(
+                        f" - Precio anterior : ${precio_anterior}")
+                    print(
+                        f" - Nuevo precio : ${float(producto.precio)}\n")
                 else:
                     raise LookupError("Producto no encontrado.")
 
             elif opcion == "6":
-                nombre = input("Ingrese el nombre del producto a actualizar la cantidad: ")
+                print("\n===== ACTUALIZACIÓN DE CANTIDAD DE PRODUCTO =====")
+                nombre = input(
+                    "Ingrese el nombre del producto a actualizar la cantidad: ")
 
                 producto = inventario.buscar_producto(nombre)
 
                 if producto:
-                    nueva_cantidad = int(input(f"Ingrese la nueva cantidad para {nombre.lower()}: "))
+                    print(
+                        f" - Cantidad actual para {nombre.lower()}: {int(producto.cantidad)}")
+
+                    cantidad_anterior = int(producto.cantidad)
+                    nueva_cantidad = int(
+                        input(f" - Ingrese la nueva cantidad para {nombre.lower()}: "))
                     producto.actualizar_cantidad(nueva_cantidad)
-                    print("\nCantidad actualizada correctamente.\n")
+                    print(
+                        f"\nCantidad de {producto.nombre} actualizada correctamente.")
+                    print(
+                        f" - Cantidad anterior : {int(cantidad_anterior)}")
+                    print(
+                        f" - Nueva cantidad : {int(producto.cantidad)}\n")
                 else:
                     raise LookupError("Producto no encontrado.")
 
