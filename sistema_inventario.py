@@ -89,7 +89,9 @@ def menu_principal():
         print("2. Buscar producto")
         print("3. Listar productos")
         print("4. Calcular valor total del inventario")
-        print("5. Salir")
+        print("5. Actualizar precio")
+        print("6. Actualizar cantidad")
+        print("7. Salir")
 
         opcion = input("Seleccione una opción: ")
 
@@ -129,6 +131,54 @@ def menu_principal():
                 print(f"\nValor total del inventario: ${total:.2f}\n")
 
             elif opcion == "5":
+                print("\n===== ACTUALIZACIÓN DE PRECIO DE PRODUCTO =====")
+                nombre = input(
+                    "Ingrese el nombre del producto a actualizar precio: ")
+
+                producto = inventario.buscar_producto(nombre)
+
+                if producto:
+                    print(
+                        f" - Precio actual para {nombre.lower()}: ${float(producto.precio)}")
+
+                    precio_anterior = float(producto.precio)
+                    nuevo_precio = float(
+                        input(f" - Ingrese el nuevo precio para {nombre.lower()}: $"))
+                    producto.actualizar_precio(nuevo_precio)
+                    print(
+                        f"\nPrecio de {producto.nombre} actualizado correctamente.")
+                    print(
+                        f" - Precio anterior : ${precio_anterior}")
+                    print(
+                        f" - Nuevo precio : ${float(producto.precio)}\n")
+                else:
+                    raise LookupError("Producto no encontrado.")
+
+            elif opcion == "6":
+                print("\n===== ACTUALIZACIÓN DE CANTIDAD DE PRODUCTO =====")
+                nombre = input(
+                    "Ingrese el nombre del producto a actualizar la cantidad: ")
+
+                producto = inventario.buscar_producto(nombre)
+
+                if producto:
+                    print(
+                        f" - Cantidad actual para {nombre.lower()}: {int(producto.cantidad)}")
+
+                    cantidad_anterior = int(producto.cantidad)
+                    nueva_cantidad = int(
+                        input(f" - Ingrese la nueva cantidad para {nombre.lower()}: "))
+                    producto.actualizar_cantidad(nueva_cantidad)
+                    print(
+                        f"\nCantidad de {producto.nombre} actualizada correctamente.")
+                    print(
+                        f" - Cantidad anterior : {int(cantidad_anterior)}")
+                    print(
+                        f" - Nueva cantidad : {int(producto.cantidad)}\n")
+                else:
+                    raise LookupError("Producto no encontrado.")
+
+            elif opcion == "7":
                 print("\nGracias por utilizar el sistema.")
                 break
 
